@@ -2,9 +2,10 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include <climits>
 using namespace std;
 
-static int K; // Occurrences of subsequences
+static unsigned int K; // Occurrences of subsequences
 
 class BinaryTree {
 	private:
@@ -90,21 +91,20 @@ bool BinaryTree::searchNode(TreeNode *&nodePtr, string str) {
 }
 
 int main() {
+	string filename; // To hold the file name
+	cout << "Text file name: ";
+	getline(cin, filename);
+	filename += ".txt";
+
 	cout << "k=";
 	cin >> K;
-	while (K < 1) {
+	while (K < 1 || K > INT_MAX) {
 		cout << "Please try again. k=";
 		cin >> K;
 	}
 	cin.get();
 
-	ifstream file; // File stream object
-
-	string filename = "chars.txt"; // To hold the file name
-	cout << "Text file name: ";
-	getline(cin, filename);
-	filename += ".txt";
-
+	ifstream file; // File stream object. File will contain only alphabetical characters and spaces. Ignore spaces and endlines.
 	string line; // Buffer
 	string chars;
 
@@ -119,13 +119,15 @@ int main() {
 		cout << filename << " could not be opened." << endl;
 	}
 
+	if (K > chars.length()) K = chars.length();
+
 	BinaryTree binaryTree;
 
 	int length = chars.length();
 	string s;
-	for (auto l = 0; l < K; l++) {
-		for (auto i = 0; i < length - l; i++) {
-			for (auto j = i; j <= i + l; j++)
+	for (unsigned int l = 0; l < K; l++) {
+		for (unsigned int i = 0; i < length - l; i++) {
+			for (unsigned int j = i; j <= i + l; j++)
 				s += chars[j];
 			binaryTree.insertNode(s);
 			s = "";
