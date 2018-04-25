@@ -4,7 +4,7 @@
 #include <iomanip>
 using namespace std;
 
-static int K;
+static int K; // Occurrences of subsequences
 
 class BinaryTree {
 	private:
