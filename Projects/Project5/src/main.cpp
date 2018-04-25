@@ -92,13 +92,19 @@ bool BinaryTree::searchNode(TreeNode *&nodePtr, string str) {
 int main() {
 	cout << "k=";
 	cin >> K;
-	do {
+	while (K < 1) {
 		cout << "Please try again. k=";
 		cin >> K;
-	} while (K < 1);
+	}
+	cin.get();
 
 	ifstream file; // File stream object
+
 	string filename = "chars.txt"; // To hold the file name
+	cout << "Text file name: ";
+	getline(cin, filename);
+	filename += ".txt";
+
 	string line; // Buffer
 	string chars;
 
