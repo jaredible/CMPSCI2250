@@ -30,7 +30,6 @@ class BinaryTree {
 		}
 
 		void insertNode(string);
-		bool searchNode(string);
 		bool searchNode(TreeNode *&, string);
 
 		void displayInOrder() {
@@ -78,10 +77,6 @@ void BinaryTree::insertNode(string str) {
 
 		insert(root, node); // Insert the node
 	}
-}
-
-bool BinaryTree::searchNode(string str) {
-	return searchNode(root, str);
 }
 
 bool BinaryTree::searchNode(TreeNode *&nodePtr, string str) {
