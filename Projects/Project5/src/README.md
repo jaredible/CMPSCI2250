@@ -34,4 +34,4 @@ Loops a total of (i + l + 1) times at starting index i of chars string.
 for (unsigned int j = i; j <= i + l; j++)
 ```
 
-#### TODO Use gifs to visualize
+#### TODO: Use gifs to visualize
