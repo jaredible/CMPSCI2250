@@ -130,12 +130,12 @@ int main() {
 		for (unsigned int i = 0; i < length - l; i++) {
 			for (unsigned int j = i; j <= i + l; j++)
 				s += chars[j]; // Append char onto buffer
-			binaryTree.insertNode(s);
+			binaryTree.insertNode(s); // Insert the string as a node
 			s = ""; // Clear buffer
 		}
 	}
 
-	binaryTree.displayInOrder();
+	binaryTree.displayInOrder(); // Output in-order traversal
 
 	return 0;
 }
