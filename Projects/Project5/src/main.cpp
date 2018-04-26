@@ -93,44 +93,45 @@ bool BinaryTree::searchNode(TreeNode *&nodePtr, string str) {
 int main() {
 	string filename; // To hold the file name
 	cout << "Text file name: ";
-	getline(cin, filename);
-	filename += ".txt";
+	getline(cin, filename); // Get the file name
+	// TODO checking
+	filename += ".txt"; // Append .txt to show this is a text file
 
 	cout << "k=";
 	cin >> K;
-	while (K < 1 || K > INT_MAX) {
+	while (K < 1 || K > UINT_MAX) { // Ensure bounds are met
 		cout << "Please try again. k=";
 		cin >> K;
 	}
-	cin.get();
+	cin.get(); // TODO
 
 	ifstream file; // File stream object. File will contain only alphabetical characters and spaces. Ignore spaces and endlines.
-	string line; // Buffer
-	string chars;
+	string word; // Word buffer
+	string chars; // Will contain all alphabetic characters, excluding spaces, in file
 
 	file.open(filename); // Open the file
 
 	if (file) { // If the file was successfully opened, continue
-		while (file >> line)
-			chars += line;
+		while (file >> word) // Get every word in file
+			chars += word; // Append character group, A.K.A. a word, onto string
 
 		file.close(); // Close the file
 	} else {
-		cout << filename << " could not be opened." << endl;
+		cout << filename << " could not be opened." << endl; // This is not good
 	}
 
-	if (K > chars.length()) K = chars.length();
+	if (K > chars.length()) K = chars.length(); // Ensure K is never above total amount of characters to prevent unnecessary iterations
 
 	BinaryTree binaryTree;
 
 	int length = chars.length();
-	string s;
+	string s; // Node value buffer
 	for (unsigned int l = 0; l < K; l++) {
 		for (unsigned int i = 0; i < length - l; i++) {
 			for (unsigned int j = i; j <= i + l; j++)
-				s += chars[j];
+				s += chars[j]; // Append char onto buffer
 			binaryTree.insertNode(s);
-			s = "";
+			s = ""; // Clear buffer
 		}
 	}
 
