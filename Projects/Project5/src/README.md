@@ -1,4 +1,4 @@
-# Testing
+# Iterating through all possible character combinations of string for all lengths <= K
 
 This code block will iterate through all possible character combinations of a string for all lengths <= K.
 chars is a string and binaryTree is just an ordinary binary tree.
@@ -33,3 +33,5 @@ Loops a total of (i + l + 1) times at starting index i of chars string.
 ```c++
 for (unsigned int j = i; j <= i + l; j++)
 ```
+
+TODO Use gifs to visualize
