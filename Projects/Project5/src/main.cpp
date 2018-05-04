@@ -98,14 +98,6 @@ int main() {
 	// TODO checking
 	filename += ".txt"; // Append .txt to show this is a text file
 
-	cout << "k=";
-	cin >> K;
-	while (K < 1 || K > UINT_MAX) { // Ensure bounds are met
-		cout << "Please try again. k=";
-		cin >> K;
-	}
-	cin.get(); // TODO
-
 	ifstream file; // File stream object. File will contain only alphabetical characters and spaces. Ignore spaces and endlines.
 	string word; // Word buffer
 	string chars; // Will contain all alphabetic characters, excluding spaces, in file
@@ -119,6 +111,15 @@ int main() {
 		file.close(); // Close the file
 	} else {
 		cout << filename << " could not be opened." << endl; // This is not good
+	}
+
+	cout << "chars: " << chars << endl; // Output file contents
+
+	cout << "k=";
+	cin >> K;
+	while (K < 1 || K > UINT_MAX) { // Ensure bounds are met
+		cout << "Please try again. k=";
+		cin >> K;
 	}
 
 	if (K > chars.length()) K = chars.length(); // Ensure K is never above total amount of characters to prevent unnecessary iterations
