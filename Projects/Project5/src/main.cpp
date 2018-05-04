@@ -93,7 +93,7 @@ bool BinaryTree::searchNode(TreeNode *&nodePtr, string str) {
 // TODO implement try/catch blocks and exceptions
 int main() {
 	string filename; // To hold the file name
-	cout << "Text file name: ";
+	cout << "filename: ";
 	getline(cin, filename); // Get the file name
 	// TODO checking
 	filename += ".txt"; // Append .txt to show this is a text file
