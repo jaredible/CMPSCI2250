@@ -23,8 +23,7 @@ int distanceToClosest(const int solutions[], int SIZE, int guess) {
 	int distance;
 	for (int i = 0; i < SIZE; i++) {
 		distance = abs(solutions[i] - guess);
-		if (distance < smallest)
-			smallest = distance;
+		if (distance < smallest) smallest = distance;
 	}
 	return smallest;
 }
@@ -84,48 +83,46 @@ int main() {
 	int distance;
 	int prevDistance;
 	bool guessedSameNumber = false;
+	int attempts = 0;
 
 	fillRand(solutions, NUM_SOLUTIONS);
 	sortArr(solutions, NUM_SOLUTIONS);
+
+	for (int i = 0; i < NUM_SOLUTIONS; i++)
+		cout << solutions[i] << (i < NUM_SOLUTIONS - 1 ? ", " : ".");
 
 	cout << "Hello, please try to guess one of my numbers from " << MIN << " to " << MAX << ".\n\n";
 
 	while (true) {
 		cout << "Please make a";
-		if (guessedSameNumber)
-			cout << "nother";
+		if (guessedSameNumber) cout << "another";
 		guessedSameNumber = false;
 		cout << " guess: ";
 
 		// Assuming is an integer
 		cin >> guess;
 		cout << "\n";
+		attempts++;
 
-		if (!inRange(guess))
-			continue;
+		if (!inRange(guess)) continue;
 
 		if (first) {
 			distance = distanceToClosest(solutions, 5, guess);
 
-			if (distance == 0)
-				break;
-			else
-				cout << "I am sorry, that is incorrect!";
+			if (distance == 0) break;
+			else cout << "I am sorry, that is incorrect!";
 
 			cout << "\n\n";
 		} else {
 			prevDistance = distance;
 			distance = distanceToClosest(solutions, 5, guess);
 
-			if (distance == 0)
-				break;
+			if (distance == 0) break;
 			else if (prevDistance == distance) {
 				guessedSameNumber = true;
 				continue;
-			} else if (prevDistance > distance)
-				cout << "Getting warmer!";
-			else
-				cout << "Getting colder!";
+			} else if (prevDistance > distance) cout << "Getting warmer!";
+			else cout << "Getting colder!";
 
 			cout << "\n\n";
 		}
@@ -133,7 +130,11 @@ int main() {
 		first = false;
 	}
 
-	cout << "Success!";
+	cout << "Success!\n\n";
+	cout << "It took you " << attempts << " attempt" << (attempts > 1 ? "s" : "") << " to guess correctly.\n\n";
+	cout << "The solutions were ";
+	for (int i = 0; i < NUM_SOLUTIONS; i++)
+		cout << solutions[i] << (i < NUM_SOLUTIONS - 1 ? ", " : ".");
 
 	return 0;
 }
